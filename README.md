@@ -16,12 +16,8 @@ Este repositorio contiene la solución a la prueba técnica para el puesto de Fr
 
 <div align="center">
 
-<<<<<<< HEAD
 ![Vista Dashboard - Gráfico de Área](./assets/bettergy2.jpeg?v=2)
 ![Vista Dashboard - Gráfico de Líneas](./assets/bettergy1.jpeg?v=2)
-=======
-![Vista Dashboard - Gráfico de Área](./assets/bettergy2.jpeg)
->>>>>>> a7b47ea239802906afa529713d8b59910d9894ab
 
 </div>
 

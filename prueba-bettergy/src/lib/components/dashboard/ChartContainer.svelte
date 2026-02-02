@@ -31,6 +31,7 @@
                 title={energyStore.measure}
                 type={energyStore.chartType}
                 color="#10B981"
+                frequency={energyStore.frequency}
             />
         {:else}
             <!-- Estado: Vacío inicial -->

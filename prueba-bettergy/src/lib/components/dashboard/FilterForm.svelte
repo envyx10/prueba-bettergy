@@ -1,9 +1,6 @@
 
 <script>
-
     import { energyStore } from '$lib/stores/energyStore.svelte';
-    import Chart from '$lib/components/chart/Chart.svelte';
-
 </script>
 
 

@@ -1,6 +1,6 @@
 <script>
 	import { energyStore } from '$lib/stores/energyStore.svelte';
-	import ValidationMenssage from './ValidationMenssage.svelte';
+	import ValidationMessage from './ValidationMessage.svelte';
 </script>
 
 <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200 mb-8">
@@ -114,5 +114,5 @@
 		</div>
 	</div>
 
-	<ValidationMenssage />
+	<ValidationMessage />
 </div>

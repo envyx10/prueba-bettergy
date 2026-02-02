@@ -1,42 +1,68 @@
-# sv
+# Prueba Técnica Bettergy
 
-Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
+Dashboard de visualización de consumo energético desarrollado con SvelteKit 5.
 
-## Creating a project
+## 🚀 Requisitos Previos
 
-If you're seeing this, you've probably already done this step. Congrats!
+- **Bun** >= 1.3.8 (gestor de paquetes y runtime JavaScript)
+- **Node.js** >= 18 (alternativa a Bun si prefieres usar npm/pnpm)
 
-```sh
-# create a new project
-npx sv create my-app
+## 📦 Instalación
+
+1. Clona el repositorio:
+```bash
+git clone <url-del-repositorio>
+cd prueba-bettergy
 ```
 
-To recreate this project with the same configuration:
-
-```sh
-# recreate this project
-bun x sv create --template minimal --types ts --add prettier eslint --install bun prueba-bettergy
+2. Instala las dependencias:
+```bash
+bun install
 ```
 
-## Developing
+## ⚙️ Configuración
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
-
-```sh
-npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
+1. Copia el archivo de variables de entorno de ejemplo:
+```bash
+cp .env.example .env
 ```
 
-## Building
+2. Edita el archivo `.env` y configura las variables necesarias:
+```env
+# URL de la API de Bettergy para obtener datos del contador
+PUBLIC_API_URL=https://tu-api-url.com/v2/datalog/
 
-To create a production version of your app:
-
-```sh
-npm run build
+# ID del contador (meter) del que se quieren obtener los datos
+PUBLIC_METER_ID=tu-meter-id
 ```
 
-You can preview the production build with `npm run preview`.
+## 🏃‍♂️ Ejecución
 
-> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
+### Modo desarrollo
+```bash
+bun dev
+```
+
+La aplicación estará disponible en `http://localhost:5173`
+
+### Modo producción
+```bash
+bun run build
+bun run preview
+```
+
+## 🛠️ Stack Tecnológico
+
+- **SvelteKit 5** - Framework web
+- **TypeScript** - Tipado estático
+- **Tailwind CSS 3** - Estilos
+- **Bun** - Runtime y gestor de paquetes
+
+## 🚧 Estado Actual
+
+✅ Integración con API de Bettergy  
+✅ Gestión de estado con stores reactivos  
+✅ Configuración de estilos con Tailwind CSS  
+🔄 Dashboard visual (en desarrollo)  
+🔄 Gráficos interactivos (en desarrollo)
+

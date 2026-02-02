@@ -1,6 +1,5 @@
 import { fetchEnergyData} from '$lib/api';
-
-import  type { EnergyData } from "../types/energy";
+import  type { EnergyData } from "$lib/types/energy";
 
 
 /**
@@ -43,7 +42,7 @@ class EnergyStore {
 		this.rawData = [];
 
 		try {
-			const data = await fetchEnergyData(this.dateFrom, this.dateTo);
+			const data = await fetchEnergyData(this.dateFrom, this.dateTo, this.frequency);
 
 			if (data.length === 0) {
 				this.error = 'La API no devolvió datos para este rango de fechas.';

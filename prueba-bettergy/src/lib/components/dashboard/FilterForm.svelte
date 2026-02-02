@@ -13,8 +13,12 @@
 				id="from"
 				bind:value={energyStore.dateFrom}
 				class="p-2.5 border rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 outline-none"
-				class:border-gray-300={energyStore.isValidDateRange}
-				class:border-red-500={!energyStore.isValidDateRange}
+				class:border-gray-300={energyStore.isValidDateRange ||
+					!energyStore.dateFrom ||
+					!energyStore.dateTo}
+				class:border-red-500={!energyStore.isValidDateRange &&
+					energyStore.dateFrom &&
+					energyStore.dateTo}
 			/>
 		</div>
 
@@ -26,8 +30,12 @@
 				id="to"
 				bind:value={energyStore.dateTo}
 				class="p-2.5 border rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 outline-none"
-				class:border-gray-300={energyStore.isValidDateRange}
-				class:border-red-500={!energyStore.isValidDateRange}
+				class:border-gray-300={energyStore.isValidDateRange ||
+					!energyStore.dateFrom ||
+					!energyStore.dateTo}
+				class:border-red-500={!energyStore.isValidDateRange &&
+					energyStore.dateFrom &&
+					energyStore.dateTo}
 			/>
 		</div>
 
@@ -37,7 +45,7 @@
 			<select
 				id="freq"
 				bind:value={energyStore.frequency}
-				class="p-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 outline-none bg-white"
+				class="select-arrow p-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 outline-none bg-white font-medium text-gray-700"
 			>
 				<option value="15m">15 Minutos</option>
 				<option value="daily">Diaria</option>
@@ -53,26 +61,28 @@
 			<select
 				id="measure"
 				bind:value={energyStore.measure}
-				class="p-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 outline-none bg-white"
+				class="select-arrow p-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 outline-none bg-white font-medium text-gray-700"
 			>
-				<optgroup label="Energía">
-					<option value="Energía Activa">Energía Activa</option>
-					<option value="Energía Generada">Energía Generada</option>
-					<option value="Energía Reactiva Inductiva">Energía Reactiva Inductiva</option>
-					<option value="Energía Inductiva Generada">Energía Inductiva Generada</option>
-					<option value="Energía Capacitiva Generada">Energía Capacitiva Generada</option>
-					<option value="Energía Reactiva Capacitiva">Energía Reactiva Capacitiva</option>
+				<optgroup label="Energía" class="font-bold text-emerald-700">
+					<option value="Energía Activa">Activa</option>
+					<option value="Energía Generada">Generada</option>
+					<option value="Energía Reactiva Inductiva">Reactiva Inductiva</option>
+					<option value="Energía Inductiva Generada">Inductiva Generada</option>
+					<option value="Energía Capacitiva Generada">Capacitiva Generada</option>
+					<option value="Energía Reactiva Capacitiva">Reactiva Capacitiva</option>
 				</optgroup>
-				<optgroup label="Cualificadores">
-					<option value="Cualificador de Energía Activa Importada">Cualificador de Energía Activa Importada</option>
-					<option value="Cualificador de Energía Activa Exportada">Cualificador de Energía Activa Exportada</option>
-					<option value="Cualificador de Energía Reactiva Inductiva Importada">Cualificador de Energía Reactiva Inductiva Importada</option>
-					<option value="Cualificador de Energía Inductiva Exportada">Cualificador de Energía Inductiva Exportada</option>
-					<option value="Cualificador de Energía Capacitiva Importada">Cualificador de Energía Capacitiva Importada</option>
-					<option value="Cualificador de Energía Capacitiva Exportada">Cualificador de Energía Capacitiva Exportada</option>
+				<optgroup label="Cualificadores" class="font-bold text-emerald-700">
+					<option value="Cualificador de Energía Activa Importada">Activa Importada</option>
+					<option value="Cualificador de Energía Activa Exportada">Activa Exportada</option>
+					<option value="Cualificador de Energía Reactiva Inductiva Importada"
+						>Reactiva Inductiva Importada</option
+					>
+					<option value="Cualificador de Energía Inductiva Exportada">Inductiva Exportada</option>
+					<option value="Cualificador de Energía Capacitiva Importada">Capacitiva Importada</option>
+					<option value="Cualificador de Energía Capacitiva Exportada">Capacitiva Exportada</option>
 				</optgroup>
-				<optgroup label="Potencia">
-					<option value="Potencia Activa Total">Potencia Activa Total</option>
+				<optgroup label="Potencia" class="font-bold text-emerald-700">
+					<option value="Potencia Activa Total">Activa Total</option>
 				</optgroup>
 			</select>
 		</div>
@@ -83,7 +93,7 @@
 			<select
 				id="chart"
 				bind:value={energyStore.chartType}
-				class="p-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 outline-none bg-white"
+				class="select-arrow p-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 outline-none bg-white font-medium text-gray-700"
 			>
 				<option value="line">Líneas</option>
 				<option value="column">Columnas</option>
@@ -96,7 +106,7 @@
 			<button
 				onclick={() => energyStore.generate()}
 				disabled={energyStore.loading || !energyStore.isFormValid}
-				class="w-full bg-emerald-600 hover:bg-emerald-700 disabled:bg-gray-400 text-white font-semibold py-2.5 px-4 rounded-lg transition-colors disabled:cursor-not-allowed shadow-sm"
+				class="w-full bg-[#1a1a2e] hover:bg-[#2d2d44] disabled:bg-gray-400 text-emerald-400 font-bold uppercase tracking-wider py-2.5 px-4 rounded-lg transition-colors disabled:cursor-not-allowed shadow-sm"
 				title={energyStore.validationError || ''}
 			>
 				{energyStore.loading ? 'Cargando...' : 'Generar Gráfico'}
@@ -104,6 +114,5 @@
 		</div>
 	</div>
 
-	<ValidationMenssage/>
-
+	<ValidationMenssage />
 </div>

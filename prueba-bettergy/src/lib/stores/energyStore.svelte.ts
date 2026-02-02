@@ -11,8 +11,8 @@ import  type { EnergyData } from "$lib/types/energy";
 class EnergyStore {
 
 	// Estado de filtros
-	dateFrom = $state('2026-01-26');
-	dateTo = $state('2026-01-27');
+	dateFrom = $state('');
+	dateTo = $state('');
 	frequency = $state('15m');
 	measure = $state('Energía Activa');
 	chartType = $state<'line' | 'column' | 'area'>('line');
@@ -52,8 +52,7 @@ class EnergyStore {
 	 * Mensaje de error de validación
 	 */
 	validationError = $derived.by((): string | null => {
-
-		if(!this.dateFrom || !this.dateTo) return 'Selecciona ambas fechas';
+		if(!this.dateFrom || !this.dateTo) return null;
 		if(!this.isValidDateRange) return 'La fecha de fin debe ser posterior a la fecha de inicio';
 		if(!this.isWithinMaxRange) return `El rango máximo es de 90 dias ( actual: ${this.rangeDays} días)`;
 
@@ -111,8 +110,8 @@ class EnergyStore {
 	 * Resetea todos los filtros a sus valores por defecto.
 	 */
 	reset() {
-		this.dateFrom = '2026-01-26';
-		this.dateTo = '2026-01-27';
+		this.dateFrom = '';
+		this.dateTo = '';
 		this.frequency = '15m';
 		this.measure = 'Energía Activa';
 		this.chartType = 'line';

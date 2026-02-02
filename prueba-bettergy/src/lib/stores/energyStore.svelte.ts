@@ -1,5 +1,6 @@
 import { fetchEnergyData} from '$lib/api';
 import  type { EnergyData } from "$lib/types/energy";
+import { SvelteDate } from 'svelte/reactivity';
 
 
 /**
@@ -27,7 +28,7 @@ export class EnergyStore {
 	 */
 	isValidDateRange = $derived.by(() => {
 		if(!this.dateFrom || !this.dateTo) return false;
-		return new Date(this.dateTo) > new Date(this.dateFrom);
+		return new SvelteDate(this.dateTo) > new SvelteDate(this.dateFrom);
 	});
 
 	/**
@@ -35,8 +36,8 @@ export class EnergyStore {
 	 */
 	rangeDays = $derived.by(()=>{
 		if(!this.dateFrom || !this.dateTo) return 0;
-		const from = new Date(this.dateFrom);
-		const to = new Date(this.dateTo);
+		const from = new SvelteDate(this.dateFrom);
+		const to = new SvelteDate(this.dateTo);
 		const diff = to.getTime() - from.getTime();
 		return Math.ceil(diff / (1000 * 60 * 60 * 24))
 	});
@@ -72,7 +73,7 @@ export class EnergyStore {
 	 */
 	chartData = $derived.by((): [number, number][] => {
 		return this.rawData.map(item => [
-			new Date(item.date).getTime(), // Timestamp en milisegundos
+			new SvelteDate(item.date).getTime(), // Timestamp en milisegundos
 			item.values[this.measure] // El valor de la métrica seleccionada
 		]);
 	});

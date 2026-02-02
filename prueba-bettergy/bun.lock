@@ -4,6 +4,9 @@
   "workspaces": {
     "": {
       "name": "prueba-bettergy",
+      "dependencies": {
+        "highcharts": "^12.5.0",
+      },
       "devDependencies": {
         "@eslint/compat": "^2.0.1",
         "@eslint/js": "^9.39.2",
@@ -359,6 +362,8 @@
     "has-flag": ["has-flag@4.0.0", "", {}, "sha512-EykJT/Q1KjTWctppgIAgfSO0tKVuZUjhgMr17kqTumMl6Afv3EISleU7qZUzoXDFTAHTDC4NOoG/ZxU3EvlMPQ=="],
 
     "hasown": ["hasown@2.0.2", "", { "dependencies": { "function-bind": "^1.1.2" } }, "sha512-0hJU9SCPvmMzIBdZFqNPXWa6dqh7WdH0cII9y+CyS8rG3nL48Bclra9HmKhVVUHyPWNH5Y7xDwAB7bfgSjkUMQ=="],
+
+    "highcharts": ["highcharts@12.5.0", "", { "peerDependencies": { "jspdf": "^3.0.0", "svg2pdf.js": "^2.6.0" }, "optionalPeers": ["jspdf", "svg2pdf.js"] }, "sha512-uNSSv1KqRLNvkyXlf1FbeGWB1mJ/8/IYpVeqYiTIop5Wo8peUvNyzUfLa58vILsmXyz+XrETtgKIEOcSgBBKuQ=="],
 
     "ignore": ["ignore@5.3.2", "", {}, "sha512-hsBTNUqQTDwkWtcdYI2i06Y/nUBEsNEDJKjWdigLvegy8kDuJAS8uRlpkkcQpyEXL0Z/pjDy5HBmMjRCJ2gq+g=="],
 

@@ -16,12 +16,23 @@ class EnergyStore {
 	dateTo = $state('2026-01-27');
 	frequency = $state('15m');
 	measure = $state('Energía Activa');
-	chartType = $state('line');
+	chartType = $state<'line' | 'column' | 'area'>('line');
 
 	// Estado de datos y UI
 	loading = $state(false);
 	error = $state<string | null>(null);
 	rawData = $state<EnergyData[]>([]);
+
+	/**
+	 * Datos transformados para Highcharts: [[timestamp, valor], [timestamp, valor], ...]
+	 * Se recalcula automáticamente cuando cambian rawData o measure.
+	 */
+	chartData = $derived.by((): [number, number][] => {
+		return this.rawData.map(item => [
+			new Date(item.date).getTime(), // Timestamp en milisegundos
+			item.values[this.measure] // El valor de la métrica seleccionada
+		]);
+	});
 
 	/**
 	 * Genera y carga los datos de energía según los filtros configurados.

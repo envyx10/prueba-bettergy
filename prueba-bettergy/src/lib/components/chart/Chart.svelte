@@ -76,14 +76,14 @@
             tooltip: {
                 valueDecimals: 2,
                 valueSuffix: ' kWh',
-                xDateFormat: '%d/%m/%Y %H:%M' // 👈 Formato mejorado para el tooltip
+                xDateFormat: '%d/%m/%Y %H:%M' // Formato mejorado para el tooltip
             },
             plotOptions: {
                 series: {
-                    turboThreshold: 10000, // 👈 Permite más de 1000 puntos sin warnings
+                    turboThreshold: 10000, //  Permite más de 1000 puntos sin warnings
                     states: {
                         inactive: {
-                            opacity: 1 // 👈 No atenúa la serie al hacer hover
+                            opacity: 1 //  No atenúa la serie al hacer hover
                         }
                     }
                 }

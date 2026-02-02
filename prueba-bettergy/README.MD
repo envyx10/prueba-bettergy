@@ -77,7 +77,7 @@ El dashboard principal permite visualizar el consumo energético de un contador 
 El proyecto sigue una arquitectura modular. A continuación se detalla la estructura completa de archivos del entregable:
 
 ```
-├── � prueba-bettergy
+├── prueba-bettergy
 │   ├── 📁 .svelte-kit
 │   ├── 📁 src
 │   │   ├── 📁 lib

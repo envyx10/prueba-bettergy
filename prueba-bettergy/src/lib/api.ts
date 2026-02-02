@@ -17,6 +17,7 @@ export async function fetchEnergyData(
 	const url = `${PUBLIC_API_URL}?meter=${PUBLIC_METER_ID}&date_from=${dateFrom}&date_to=${dateTo}&freq=${frequency}`;
 
 	try {
+		
 		const response = await fetch(url);
 
 		if (!response.ok) {

@@ -101,18 +101,29 @@
 			</select>
 		</div>
 
-		<!-- Botón Generar con validaciones -->
-		<div class="flex items-end">
+		<!-- Botones de acción -->
+		<div class="flex items-end gap-3 md:col-span-2 lg:col-span-1">
 			<button
 				onclick={() => energyStore.generate()}
 				disabled={energyStore.loading || !energyStore.isFormValid}
-				class="w-full bg-[#1a1a2e] hover:bg-[#2d2d44] disabled:bg-gray-400 text-emerald-400 disabled:text-white font-bold uppercase tracking-wider py-2.5 px-4 rounded-lg transition-colors disabled:cursor-not-allowed shadow-sm"
+				class="flex-1 bg-[#1a1a2e] hover:bg-[#2d2d44] disabled:bg-gray-400 text-emerald-400 disabled:text-white font-bold uppercase tracking-wider py-2.5 px-4 rounded-lg transition-colors disabled:cursor-not-allowed shadow-sm"
 				title={energyStore.validationError || ''}
 			>
 				{energyStore.loading ? 'Cargando...' : 'Generar Gráfico'}
+			</button>
+			<button
+				onclick={() => energyStore.reset()}
+				disabled={energyStore.loading}
+				class="px-4 py-2.5 border-2 border-gray-300 hover:border-gray-400 text-gray-700 hover:text-gray-900 font-semibold rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+				title="Limpiar todos los filtros"
+			>
+				<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+					<path fill-rule="evenodd" d="M4 2a1 1 0 011 1v2.101a7.002 7.002 0 0111.601 2.566 1 1 0 11-1.885.666A5.002 5.002 0 005.999 7H9a1 1 0 010 2H4a1 1 0 01-1-1V3a1 1 0 011-1zm.008 9.057a1 1 0 011.276.61A5.002 5.002 0 0014.001 13H11a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0v-2.101a7.002 7.002 0 01-11.601-2.566 1 1 0 01.61-1.276z" clip-rule="evenodd" />
+				</svg>
 			</button>
 		</div>
 	</div>
 
 	<ValidationMessage />
+	
 </div>

@@ -1,0 +1,13 @@
+services:
+  app:
+    build:
+      context: .
+      args:
+        - PUBLIC_API_URL=${PUBLIC_API_URL}
+        - PUBLIC_METER_ID=${PUBLIC_METER_ID}
+    ports:
+      - "3000:3000"
+    environment:
+      - PUBLIC_API_URL=${PUBLIC_API_URL}
+      - PUBLIC_METER_ID=${PUBLIC_METER_ID}
+      - ORIGIN=http://localhost:3000

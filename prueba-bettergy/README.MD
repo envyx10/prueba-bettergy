@@ -119,6 +119,8 @@ El proyecto sigue una arquitectura modular. A continuación se detalla la estruc
 │   ├── ⚙️ tsconfig.json
 │   ├── 📄 vite.config.ts
 
+```
+
 ## 📝 Notas de Diseño
 
 1.  **Svelte 5**: Se decidió utilizar la última versión para poner en practica el conocimiento adquirido sobre las tendencias actuales y aprovechar la simplicidad de las "Runes" frente a los stores tradicionales.

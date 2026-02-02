@@ -1,4 +1,7 @@
-import { fetchEnergyData, type EnergyData } from '$lib/api';
+import { fetchEnergyData} from '$lib/api';
+
+import  type { EnergyData } from "../types/energy";
+
 
 /**
  * Store para gestionar el estado del dashboard de energía.
@@ -7,6 +10,7 @@ import { fetchEnergyData, type EnergyData } from '$lib/api';
  * Nota: Este archivo es .svelte.ts para que Svelte 5 procese correctamente los runes $state
  */
 class EnergyStore {
+
 	// Estado de filtros
 	dateFrom = $state('2026-01-26');
 	dateTo = $state('2026-01-27');

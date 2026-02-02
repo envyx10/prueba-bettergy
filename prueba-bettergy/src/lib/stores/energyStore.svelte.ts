@@ -8,7 +8,7 @@ import  type { EnergyData } from "$lib/types/energy";
  *
  * Nota: Este archivo es .svelte.ts para que Svelte 5 procese correctamente los runes $state
  */
-class EnergyStore {
+export class EnergyStore {
 
 	// Estado de filtros
 	dateFrom = $state('');

@@ -2,6 +2,25 @@
 
 Este repositorio contiene la solución a la prueba técnica para el puesto de Frontend Developer en Bettergy. La aplicación es un Dashboard de visualización de datos de consumo energético desarrollado con las últimas tecnologías web, enfocado en performance, mantenibilidad y experiencia de usuario.
 
+## 📸 Preview de la Aplicación
+
+### 🎨 Wireframe
+
+<div align="center">
+
+![Wireframe](./assets/wireframe-prueba.png)
+
+</div>
+
+### 💻 Dashboard en Acción
+
+<div align="center">
+
+![Vista Dashboard - Gráfico de Área](./assets/bettergy2.jpeg)
+![Vista Dashboard - Gráfico de Líneas](./assets/bettergy1.jpeg)
+
+</div>
+
 ## 🚀 Tecnologías
 
 El proyecto ha sido construido utilizando un stack moderno y eficiente:

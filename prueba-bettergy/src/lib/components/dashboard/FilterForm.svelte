@@ -106,7 +106,7 @@
 			<button
 				onclick={() => energyStore.generate()}
 				disabled={energyStore.loading || !energyStore.isFormValid}
-				class="w-full bg-[#1a1a2e] hover:bg-[#2d2d44] disabled:bg-gray-400 text-emerald-400 font-bold uppercase tracking-wider py-2.5 px-4 rounded-lg transition-colors disabled:cursor-not-allowed shadow-sm"
+				class="w-full bg-[#1a1a2e] hover:bg-[#2d2d44] disabled:bg-gray-400 text-emerald-400 disabled:text-white font-bold uppercase tracking-wider py-2.5 px-4 rounded-lg transition-colors disabled:cursor-not-allowed shadow-sm"
 				title={energyStore.validationError || ''}
 			>
 				{energyStore.loading ? 'Cargando...' : 'Generar Gráfico'}

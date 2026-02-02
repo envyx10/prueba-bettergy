@@ -8,8 +8,13 @@ import  type { EnergyData } from "./types/energy";
  * @returns Promesa con el array de datos energéticos
  * @throws Error si la petición HTTP falla
  */
-export async function fetchEnergyData(dateFrom: string, dateTo: string): Promise<EnergyData[]> {
-	const url = `${PUBLIC_API_URL}?meter=${PUBLIC_METER_ID}&date_from=${dateFrom}&date_to=${dateTo}`;
+export async function fetchEnergyData(
+	dateFrom: string, 
+	dateTo: string,
+	frequency: string = '15m'
+): Promise<EnergyData[]> {
+	
+	const url = `${PUBLIC_API_URL}?meter=${PUBLIC_METER_ID}&date_from=${dateFrom}&date_to=${dateTo}&freq=${frequency}`;
 
 	try {
 		const response = await fetch(url);

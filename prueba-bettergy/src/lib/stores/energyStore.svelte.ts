@@ -1,5 +1,4 @@
 import { fetchEnergyData} from '$lib/api';
-
 import  type { EnergyData } from "../types/energy";
 
 

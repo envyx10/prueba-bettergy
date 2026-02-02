@@ -96,12 +96,12 @@
         } else {
             chartInstance = Highcharts.chart(chartContainer, options);
             
-            // 👇 AÑADIR ZOOM CON RUEDA DEL RATÓN
+            // AÑADIR ZOOM CON RUEDA DEL RATÓN
             chartContainer.addEventListener('wheel', handleWheel, { passive: false });
         }
     }
 
-    // 👇 FUNCIÓN PARA MANEJAR ZOOM CON RUEDA
+    // FUNCIÓN PARA MANEJAR ZOOM CON RUEDA
     function handleWheel(event: WheelEvent) {
         event.preventDefault();
         
@@ -128,7 +128,7 @@
         // Aplicar los nuevos extremos
         xAxis.setExtremes(newMin, newMax, true, false);
         
-        // 👇 Forzar que aparezca el botón de reset zoom
+        // Forzar que aparezca el botón de reset zoom
         chartInstance.showResetZoom();
     }
 

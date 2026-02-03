@@ -25,6 +25,8 @@ ARG PUBLIC_METER_ID
 # Los convertimos en variables de entorno para que estén disponibles en el build
 ENV PUBLIC_API_URL=$PUBLIC_API_URL
 ENV PUBLIC_METER_ID=$PUBLIC_METER_ID
+# Forzamos el uso de adapter-node
+ENV ADAPTER=node
 
 # Construimos la aplicación para producción
 RUN bun run build

@@ -1,7 +1,7 @@
-import { fetchEnergyData} from '$lib/api';
-import  type { EnergyData } from "$lib/types/energy";
+import { fetchEnergyData } from '$lib/api';
+import type { EnergyData } from '$lib/types/energy';
 import { SvelteDate } from 'svelte/reactivity';
-
+import { aggregateDataByFrequency } from '$lib/utils/energyHelpers';
 
 /**
  * Store para gestionar el estado del dashboard de energía.
@@ -10,7 +10,6 @@ import { SvelteDate } from 'svelte/reactivity';
  * Nota: Este archivo es .svelte.ts para que Svelte 5 procese correctamente los runes $state
  */
 export class EnergyStore {
-
 	// Estado de filtros
 	dateFrom = $state('');
 	dateTo = $state('');
@@ -27,35 +26,36 @@ export class EnergyStore {
 	 * Valida que dateTo sea posterior a dateFrom
 	 */
 	isValidDateRange = $derived.by(() => {
-		if(!this.dateFrom || !this.dateTo) return false;
+		if (!this.dateFrom || !this.dateTo) return false;
 		return new SvelteDate(this.dateTo) > new SvelteDate(this.dateFrom);
 	});
 
 	/**
 	 * Calcula el rango de dias
 	 */
-	rangeDays = $derived.by(()=>{
-		if(!this.dateFrom || !this.dateTo) return 0;
+	rangeDays = $derived.by(() => {
+		if (!this.dateFrom || !this.dateTo) return 0;
 		const from = new SvelteDate(this.dateFrom);
 		const to = new SvelteDate(this.dateTo);
 		const diff = to.getTime() - from.getTime();
-		return Math.ceil(diff / (1000 * 60 * 60 * 24))
+		return Math.ceil(diff / (1000 * 60 * 60 * 24));
 	});
 
 	/**
 	 *  Valida límite máximo de días (ej: 90 días)
 	 */
-    isWithinMaxRange = $derived.by(() => {
-        return this.rangeDays <= 90;
-    });
+	isWithinMaxRange = $derived.by(() => {
+		return this.rangeDays <= 90;
+	});
 
 	/**
 	 * Mensaje de error de validación
 	 */
 	validationError = $derived.by((): string | null => {
-		if(!this.dateFrom || !this.dateTo) return null;
-		if(!this.isValidDateRange) return 'La fecha de fin debe ser posterior a la fecha de inicio';
-		if(!this.isWithinMaxRange) return `El rango máximo es de 90 dias ( actual: ${this.rangeDays} días)`;
+		if (!this.dateFrom || !this.dateTo) return null;
+		if (!this.isValidDateRange) return 'La fecha de fin debe ser posterior a la fecha de inicio';
+		if (!this.isWithinMaxRange)
+			return `El rango máximo es de 90 dias ( actual: ${this.rangeDays} días)`;
 
 		return null;
 	});
@@ -63,30 +63,42 @@ export class EnergyStore {
 	/**
 	 * Verifica si el formulario es válido
 	 */
-	isFormValid = $derived.by(()=>{
+	isFormValid = $derived.by(() => {
 		return this.isValidDateRange && this.isWithinMaxRange;
-	})
+	});
 
 	/**
 	 * Datos transformados para Highcharts: [[timestamp, valor], [timestamp, valor], ...]
 	 * Se recalcula automáticamente cuando cambian rawData o measure.
+	 * Agrupa los datos según la frecuencia seleccionada.
 	 */
 	chartData = $derived.by((): [number, number][] => {
-		return this.rawData.map(item => [
-			new SvelteDate(item.date).getTime(), // Timestamp en milisegundos
-			item.values[this.measure] // El valor de la métrica seleccionada
-		]);
+		if (this.rawData.length === 0) return [];
+
+		// Si la frecuencia es 15m, devolver todos los datos sin agrupar
+		if (this.frequency === '15m') {
+			return this.rawData.map((item) => [
+				new SvelteDate(item.date).getTime(),
+				item.values[this.measure]
+			]);
+		}
+
+		// Agrupar datos según la frecuencia
+		return aggregateDataByFrequency(this.rawData, this.frequency, this.measure);
 	});
+
+	/**
+	 * Obtiene el inicio de semana (lunes) para una fecha dada.
+	 */
 
 	/**
 	 * Genera y carga los datos de energía según los filtros configurados.
 	 */
 	async generate() {
-
 		/**
 		 * Valda antes de generar
 		 */
-		if(!this.isFormValid) return this.error = this.validationError;
+		if (!this.isFormValid) return (this.error = this.validationError);
 
 		this.loading = true;
 		this.error = null;

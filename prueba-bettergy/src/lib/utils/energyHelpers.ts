@@ -57,7 +57,15 @@ export function aggregateDataByFrequency(
 	};
 
 	const groupFn = getGrouping[frequency as keyof typeof getGrouping];
-	if (!groupFn) return [];
+
+	if (!groupFn) {
+		console.warn(
+			`aggregateDataByFrequency: frecuencia inválida "${frequency}". ` +
+				'Se esperaba una de: ' +
+				Object.keys(getGrouping).join(', ')
+		);
+		return [];
+	}
 
 	// Agrupar con reduce (más funcional y limpio)
 	const grouped = rawData.reduce((acc, item) => {

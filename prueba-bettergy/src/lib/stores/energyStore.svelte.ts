@@ -88,15 +88,11 @@ export class EnergyStore {
 	});
 
 	/**
-	 * Obtiene el inicio de semana (lunes) para una fecha dada.
-	 */
-
-	/**
 	 * Genera y carga los datos de energía según los filtros configurados.
 	 */
 	async generate() {
 		/**
-		 * Valda antes de generar
+		 * Valida antes de generar
 		 */
 		if (!this.isFormValid) return (this.error = this.validationError);
 
